@@ -56,20 +56,18 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 50,),
           Visibility(
             visible: isLoaded,
-            child: ListView.builder(
-                itemCount: ictihats?.length,
-                itemBuilder: (context, index){
-                  String link = getLink(ictihats![index].id);
-                  print("link is here!");
-                  return Center(
-                    child: Link(
-                      target: LinkTarget.blank,
-                      builder: (context, followlink) =>
-                          ElevatedButton(onPressed: followlink, child:  Text(ictihats![index].id),),
-                      uri: Uri.parse(link),
-                    ),
-                  );
-                }),
+            child: SingleChildScrollView(
+              child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: ictihats?.length,
+                  itemBuilder: (context, index){
+                    String link = getLink(ictihats![index].id);
+                    print("link is here!");
+                    return Container(
+                      child: Text(ictihats![index].id),
+                    );
+                  }),
+            ),
             replacement: CircularProgressIndicator(),
           ),
         ]

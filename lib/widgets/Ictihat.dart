@@ -29,9 +29,9 @@ class Ictihat {
 
   factory Ictihat.fromJson(Map<String, dynamic> json) => Ictihat(
     id: json["id"],
-    rankInTSearch: json["rank_in_t_search"],
+    rankInTSearch: json["rank_in_t"],
     rank: json["rank"],
-    phraseExist: json["phrase_exist"],
+    phraseExist: json["phrase_exists"],
     numberOfWords: json["number_of_words"],
     length: json["length"],
     novel: json["novel"],
