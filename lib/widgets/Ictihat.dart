@@ -39,9 +39,9 @@ class Ictihat {
 
   Map<String, dynamic> toJson() => {
     "id": id,
-    "rank_in_t_search": rankInTSearch,
+    "rank_in_t": rankInTSearch,
     "rank": rank,
-    "phrase_exist": phraseExist,
+    "phrase_exists": phraseExist,
     "number_of_words": numberOfWords,
     "length": length,
     "novel": novel,
