@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:q_a_in_law_area/remote_service/remote_service.dart';
 import 'package:q_a_in_law_area/widgets/Ictihat.dart';
+import 'package:url_launcher/link.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -60,12 +61,12 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index){
                   String link = getLink(ictihats![index].id);
                   print("link is here!");
-                  return Container(
-                    child: Column(
-                      children: [
-                        Text(ictihats![index].ictihat),
-                        Text(link),
-                      ],
+                  return Center(
+                    child: Link(
+                      target: LinkTarget.blank,
+                      builder: (context, followlink) =>
+                          ElevatedButton(onPressed: followlink, child:  Text(ictihats![index].id),),
+                      uri: Uri.parse(link),
                     ),
                   );
                 }),
