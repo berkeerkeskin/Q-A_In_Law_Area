@@ -32,6 +32,11 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  getLink(String id) async {
+    String? link = await RemoteService().getIDLink(id);
+    return link;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +58,15 @@ class _HomePageState extends State<HomePage> {
             child: ListView.builder(
                 itemCount: ictihats?.length,
                 itemBuilder: (context, index){
-
+                  String link = getLink(ictihats![index].id);
+                  print("link is here!");
                   return Container(
-                    child: Text(ictihats![index].ictihat),
+                    child: Column(
+                      children: [
+                        Text(ictihats![index].ictihat),
+                        Text(link),
+                      ],
+                    ),
                   );
                 }),
             replacement: CircularProgressIndicator(),

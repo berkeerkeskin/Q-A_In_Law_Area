@@ -16,4 +16,16 @@ class RemoteService {
     }
   }
 
+  Future<String?> getIDLink(String ictihatID) async {
+    var client = http.Client();
+    String url = "http://localhost:8000/get-by-id/{" + ictihatID + "}";
+    var uri = Uri.parse(url);
+    var response = await client.get(uri);
+
+    if(response.statusCode == 200){
+      var string = response.body;
+      return string;
+    }
+  }
+
 }
