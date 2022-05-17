@@ -1,5 +1,6 @@
 import 'package:q_a_in_law_area/widgets/Ictihat.dart';
 import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class RemoteService {
 
@@ -23,8 +24,9 @@ class RemoteService {
     var response = await client.get(uri);
 
     if(response.statusCode == 200){
-      var string = response.body;
-      return string;
+      String str = response.body;
+      print(str);
+      return str;
     }
   }
 

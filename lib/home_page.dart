@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:q_a_in_law_area/remote_service/remote_service.dart';
+import 'package:q_a_in_law_area/test.dart';
 import 'package:q_a_in_law_area/widgets/Ictihat.dart';
 import 'package:url_launcher/link.dart';
 
@@ -14,7 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Ictihat>? ictihats;
   var isLoaded = false;
-
+  late String link;
   @override
   void initState() {
     super.initState();
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   getLink(String id) async {
-    String? link = await RemoteService().getIDLink(id);
+    link = (await RemoteService().getIDLink(id))!;
     return link;
   }
 
@@ -42,35 +43,46 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text("Ictihat Search"),
       ),
-      body: Column(
-        children: [
-          CupertinoSearchTextField(
-            onSubmitted: (searchQuery){
-              getData(searchQuery);
-              print("onsubmit: " + searchQuery);
-            },
-          ),
-          SizedBox(height: 50,),
-          Visibility(
-            visible: isLoaded,
-            child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CupertinoSearchTextField(
+              onSubmitted: (searchQuery){
+                getData(searchQuery);
+                print("onsubmit: " + searchQuery);
+              },
+            ),
+            SizedBox(height: 50,),
+            Visibility(
+              visible: isLoaded,
               child: ListView.builder(
                   shrinkWrap: true,
                   itemCount: ictihats?.length,
                   itemBuilder: (context, index){
-                    String link = getLink(ictihats![index].id);
-                    print("link is here!");
-                    return Container(
-                      child: Text(ictihats![index].id),
+                    return ElevatedButton(
+                        onPressed: () {
+                          FutureBuilder(
+                            future: getLink(ictihats![index].id),
+                            builder: (context, AsyncSnapshot snapshot) {
+                              if(snapshot.hasData){
+                                String xsd = snapshot.data ?? "";
+                                return Test( s: xsd,);
+                              }else{
+                                return Text("loading");
+                              }
+                          },);
+                        },
+                        child: Text(ictihats![index].id),
                     );
                   }),
+              replacement: CircularProgressIndicator(),
             ),
-            replacement: CircularProgressIndicator(),
-          ),
-        ]
+          ]
+        ),
       ),
     );
   }
