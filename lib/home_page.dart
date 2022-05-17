@@ -64,17 +64,13 @@ class _HomePageState extends State<HomePage> {
                   itemCount: ictihats?.length,
                   itemBuilder: (context, index){
                     return ElevatedButton(
-                        onPressed: () {
-                          FutureBuilder(
-                            future: getLink(ictihats![index].id),
-                            builder: (context, AsyncSnapshot snapshot) {
-                              if(snapshot.hasData){
-                                String xsd = snapshot.data ?? "";
-                                return Test( s: xsd,);
-                              }else{
-                                return Text("loading");
-                              }
-                          },);
+                        onPressed: () async{
+                       String a = (await RemoteService().getIDLink(ictihats![index].id))!;
+                        await showDialog(context: context, builder: (_) => AlertDialog(
+                         title: Text(a),
+                       ) );
+
+
                         },
                         child: Text(ictihats![index].id),
                     );
