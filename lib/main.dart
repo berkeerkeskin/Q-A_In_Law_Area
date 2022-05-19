@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:q_a_in_law_area/home_screen.dart';
 
 import 'home_page.dart';
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const HomeScreen(),
     );
   }
 }
