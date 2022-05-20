@@ -6,26 +6,28 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.all(30),
+      alignment: Alignment.center,
+      margin: EdgeInsets.symmetric(horizontal: size.width / 3),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Colors.yellow.withOpacity(0.5),
+        color: Colors.black.withOpacity(0.5),
         borderRadius: BorderRadius.circular(15)
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
                 "Search Judicial Data".toUpperCase(),
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 40,),
+                style: TextStyle(color: Colors.yellow, fontWeight: FontWeight.bold, fontSize: 40,),
             ),
             Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,\nsed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi \nut aliquip ex ea commodo consequat.",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
               style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontSize: 20,
               ),
             ),
@@ -45,7 +47,6 @@ class Body extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 20),
                 padding: EdgeInsets.all(3),
                 decoration: BoxDecoration(
-                  color: Color(0xFF372930),
                   borderRadius: BorderRadius.circular(34)
                 ),
               ),

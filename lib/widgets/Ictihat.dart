@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final ictihat = ictihatFromJson(jsonString);
-
 import 'dart:convert';
 
 List<Ictihat> ictihatFromJson(String str) => List<Ictihat>.from(json.decode(str).map((x) => Ictihat.fromJson(x)));
@@ -10,40 +6,32 @@ String ictihatToJson(List<Ictihat> data) => json.encode(List<dynamic>.from(data.
 
 class Ictihat {
   Ictihat({
-    required this.id,
-    required this.rankInTSearch,
-    required this.rank,
-    required this.phraseExist,
-    required this.numberOfWords,
-    required this.length,
-    required this.novel,
+    required this.daire,
+    required this.hukum,
+    required this.esas,
+    required this.mahkeme,
+    required this.ictihat,
   });
 
-  String id;
-  String rankInTSearch;
-  String rank;
-  String phraseExist;
-  String numberOfWords;
-  String length;
-  String novel;
+  String daire;
+  String hukum;
+  String esas;
+  String mahkeme;
+  String ictihat;
 
   factory Ictihat.fromJson(Map<String, dynamic> json) => Ictihat(
-    id: json["id"],
-    rankInTSearch: json["rank_in_t"],
-    rank: json["rank"],
-    phraseExist: json["phrase_exists"],
-    numberOfWords: json["number_of_words"],
-    length: json["length"],
-    novel: json["novel"],
+    daire: json["daire"],
+    hukum: json["hukum"],
+    esas: json["esas"],
+    mahkeme: json["mahkeme"],
+    ictihat: json["ictihat"],
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "rank_in_t": rankInTSearch,
-    "rank": rank,
-    "phrase_exists": phraseExist,
-    "number_of_words": numberOfWords,
-    "length": length,
-    "novel": novel,
+    "daire": daire,
+    "hukum": hukum,
+    "esas": esas,
+    "mahkeme": mahkeme,
+    "ictihat": ictihat,
   };
 }

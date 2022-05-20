@@ -4,10 +4,10 @@ import 'dart:convert';
 
 class RemoteService {
 
-  Future<List<Ictihat>?> getIctihat(String searchQuery) async {
+  Future<List<Ictihat>?> getIctihatBert(String searchQuery) async {
     print("get: " + searchQuery);
     var client = http.Client();
-    String url = "http://localhost:8000/general-search/" + searchQuery;
+    String url = "http://localhost:8000/ictihat/knn-bert-search/" + searchQuery;
     var uri = Uri.parse(url);
     var response = await client.get(uri);
 
@@ -17,16 +17,16 @@ class RemoteService {
     }
   }
 
-  Future<String?> getIDLink(String ictihatID) async {
+  Future<List<Ictihat>?> getIctihatFasttext(String searchQuery) async {
+    print("get: " + searchQuery);
     var client = http.Client();
-    String url = "http://localhost:8000/get-by-id/" + ictihatID;
+    String url = "http://localhost:8000/ictihat/knn-ft-search/" + searchQuery;
     var uri = Uri.parse(url);
     var response = await client.get(uri);
 
     if(response.statusCode == 200){
-      String str = response.body;
-      print(str);
-      return str;
+      var json = response.body;
+      return ictihatFromJson(json);
     }
   }
 
