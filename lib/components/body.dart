@@ -21,11 +21,11 @@ class Body extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Text(
-                "Search Judicial Data".toUpperCase(),
+                "İÇTİHATLARDA ARAYIN!".toUpperCase(),
                 style: TextStyle(color: Colors.yellow, fontWeight: FontWeight.bold, fontSize: 40,),
             ),
             Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                "Bu projemizde, 200.000'den fazla içtihat verilerinde hukuk öğrencilerinin arama yapabileceği ve bu sayede istedikleri verilere daha kolay ulaşabilecekleri bir arama motoru geliştirdik.",
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,

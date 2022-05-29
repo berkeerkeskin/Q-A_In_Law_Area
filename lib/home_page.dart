@@ -14,8 +14,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Ictihat>? ictihats;
   var isLoaded = false;
-  bool _bert = true;
-  bool _fasttext = false;
+  String dropdownvalue = 'Bert';
+
+  var items = [
+    'Bert',
+    'Fasttext'
+  ];
   @override
   void initState() {
     super.initState();
@@ -33,6 +37,11 @@ class _HomePageState extends State<HomePage> {
 
   getDataFasttext(String searchQuery) async {
     ictihats = (await RemoteService().getIctihatFasttext(searchQuery))!;
+    if(ictihats != null){
+      setState(() {
+        isLoaded = true;
+      });
+    }
   }
 
 
@@ -62,44 +71,33 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(10)
                 ),
                 onSubmitted: (searchQuery){
-                  if(_fasttext){
-                    getDataFasttext(searchQuery);
-                  }else if(_bert){
-                    getDataBert(searchQuery);
-                  }
-
-                  print("onsubmit: " + searchQuery);
+                  setState(() {
+                    print(dropdownvalue);
+                    if(dropdownvalue.compareTo("Bert") == 0){
+                      print("xxx");
+                      getDataBert(searchQuery);
+                    }else{
+                      getDataFasttext(searchQuery);
+                    }
+                    print("onsubmit: " + searchQuery);
+                  });
                 },
               ),
-              SwitchListTile(
-                  dense: false,
-                  title: Text("Fasttext Model"),
-                  value: _fasttext,
-                  onChanged: (bool value){
-                setState(() {
-                  if(value && _bert){
-                    _fasttext = value;
-                    _bert = false;
-                  }else if(!value && !_bert){
-                    _fasttext = false;
-                    _bert = true;
-                  }
-                });
-              }),
-              SwitchListTile(
-                  title: Text("Bert Model"),
-                  value: _bert,
-                  onChanged: (bool value){
-                setState(() {
-                  if(value && _fasttext){
-                    _bert = value;
-                    _fasttext = false;
-                  }else if(!value && !_fasttext){
-                    _bert = false;
-                    _fasttext = true;
-                  }
-                });
-              }),
+              DropdownButton(
+                value: dropdownvalue,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                items: items.map((String items) {
+                  return DropdownMenuItem(
+                    value: items,
+                    child: Text(items, style: TextStyle(color: Colors.black, fontWeight: FontWeight.w400),),
+                  );
+                }).toList(),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    dropdownvalue = newValue!;
+                  });
+                }
+              ),
               Visibility(
                 visible: isLoaded,
                 child: GridView.builder(
@@ -107,7 +105,8 @@ class _HomePageState extends State<HomePage> {
                     itemCount: ictihats?.length,
                     itemBuilder: (context, index){
                       return Container(
-                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                        height: 200,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
                           color: Colors.black.withOpacity(0.7),
@@ -126,16 +125,18 @@ class _HomePageState extends State<HomePage> {
                               ],
                             ),
                             Container(
+                              height: 100,
                               margin: EdgeInsets.symmetric( vertical: 5),
                               padding: EdgeInsets.all(5),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10)
                               ),
-                              child: Text(ictihats![index].ictihat.length > 250 ? "${ictihats![index].ictihat.substring(0, 250)}...": ictihats![index].ictihat,
+                              child: Text(ictihats![index].ictihat.length > 100 ? "${ictihats![index].ictihat.substring(0, 100)}..." : ictihats![index].ictihat,
                                 style: TextStyle(fontWeight: FontWeight.w400, ),
                               ),
                             ),
+                            SizedBox(height: 10,),
                             ElevatedButton(
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow.shade400)
@@ -191,14 +192,15 @@ class _HomePageState extends State<HomePage> {
                                 ) );
 
                               },
-                              child: Text("içtihat...", style: TextStyle(color: Colors.black),),
+                              child: Text("İÇTİHAT İÇİN TIKLA", style: TextStyle(color: Colors.black),),
 
                             ),
+                            SizedBox(height: 30,)
                           ]
                         ),
                       );
                     }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  mainAxisSpacing: 10,
+                  mainAxisSpacing: 0,
                   crossAxisSpacing: 10,
                   crossAxisCount: 4,
                 ),),

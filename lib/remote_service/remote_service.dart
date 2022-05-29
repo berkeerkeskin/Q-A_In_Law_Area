@@ -13,7 +13,7 @@ class RemoteService {
 
     if(response.statusCode == 200){
       var json = response.body;
-      return ictihatFromJson(json);
+      return ictihatFromJson(utf8.decode(response.bodyBytes));
     }
   }
 
@@ -26,7 +26,7 @@ class RemoteService {
 
     if(response.statusCode == 200){
       var json = response.body;
-      return ictihatFromJson(json);
+      return ictihatFromJson(utf8.decode(response.bodyBytes));
     }
   }
 
