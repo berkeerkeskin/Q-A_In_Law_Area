@@ -47,6 +47,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -74,7 +75,6 @@ class _HomePageState extends State<HomePage> {
                   setState(() {
                     print(dropdownvalue);
                     if(dropdownvalue.compareTo("Bert") == 0){
-                      print("xxx");
                       getDataBert(searchQuery);
                     }else{
                       getDataFasttext(searchQuery);
@@ -105,7 +105,6 @@ class _HomePageState extends State<HomePage> {
                     itemCount: ictihats?.length,
                     itemBuilder: (context, index){
                       return Container(
-                        height: 200,
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
@@ -143,51 +142,58 @@ class _HomePageState extends State<HomePage> {
                               ),
                               onPressed: () async{
                                 await showDialog(context: context, builder: (_) => Container(
-                                  color: Colors.white,
-                                  child: DataTable(
-                                    columns: [
-                                      DataColumn(
-                                        label: Text(
-                                          'Daire',
-                                          style: TextStyle(fontStyle: FontStyle.italic, color: Colors.black),
+                                  padding: EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Color(0xff4B4B4B),
+                                  ),
+                                  width: size.width,
+                                  margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                                  alignment: Alignment.topLeft,
+
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text("Daire: ", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400,),),
+                                            SelectableText(ictihats![index].daire, style: TextStyle(color: Colors.white),),
+                                          ],
                                         ),
-                                      ),
-                                      DataColumn(
-                                        label: Text(
-                                          'Hüküm',
-                                          style: TextStyle(fontStyle: FontStyle.italic, color: Colors.black),
+                                        Divider(color: Colors.yellow.shade400,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text("Mahkeme: ", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400,),),
+                                            SelectableText(ictihats![index].mahkeme, style: TextStyle(color: Colors.white),),
+                                          ],
                                         ),
-                                      ),
-                                      DataColumn(
-                                        label: Text(
-                                          'Esas',
-                                          style: TextStyle(fontStyle: FontStyle.italic, color: Colors.black),
+                                        Divider(color: Colors.yellow.shade400,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text("Esas: ", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400,),),
+                                            SelectableText(ictihats![index].esas, style: TextStyle(color: Colors.white),),
+                                          ],
                                         ),
-                                      ),
-                                      DataColumn(
-                                        label: Text(
-                                          'Mahkeme',
-                                          style: TextStyle(fontStyle: FontStyle.italic, color: Colors.black),
+                                        Divider(color: Colors.yellow.shade400,),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Text("Hüküm: ", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400,),),
+                                            SelectableText(ictihats![index].hukum, style: TextStyle(color: Colors.white),),
+                                          ],
                                         ),
-                                      ),
-                                      DataColumn(
-                                        label: Text(
-                                          'İçtihat',
-                                          style: TextStyle(fontStyle: FontStyle.italic, color: Colors.black),
+                                        Divider(color: Colors.yellow.shade400,),
+                                        Wrap(
+                                          children: [
+                                            Text("İçtihat:", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400, height: 1.5 ),),
+                                            SelectableText(ictihats![index].ictihat, style: TextStyle(color: Colors.white, height: 1.4),),
+                                          ],
                                         ),
-                                      ),
-                                    ],
-                                    rows: [
-                                      DataRow(
-                                        cells: <DataCell>[
-                                          DataCell(Text(ictihats![index].daire)),
-                                          DataCell(Text(ictihats![index].hukum)),
-                                          DataCell(Text(ictihats![index].esas)),
-                                          DataCell(Text(ictihats![index].mahkeme)),
-                                          DataCell(Text(ictihats![index].ictihat)),
-                                        ],
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ) );
 

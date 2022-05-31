@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:q_a_in_law_area/home_screen.dart';
 
 import '../home_page.dart';
 
@@ -24,8 +25,10 @@ class CustomAppBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          AppBarItem(title: "GİrİŞ", press: (){}),
-          AppBarItem(title: "Hakkımızda", press: (){}),
+          AppBarItem(title: "GİrİŞ", press: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
+          }),
+          AppBarItem(title: "ÜRÜN HAKKINDA", press: (){}),
           ClipRRect(
             borderRadius: BorderRadius.circular(25),
             child: FlatButton(
