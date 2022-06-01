@@ -28,7 +28,6 @@ class CustomAppBar extends StatelessWidget {
           AppBarItem(title: "GİrİŞ", press: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()),);
           }),
-          AppBarItem(title: "ÜRÜN HAKKINDA", press: (){}),
           ClipRRect(
             borderRadius: BorderRadius.circular(25),
             child: FlatButton(

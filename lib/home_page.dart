@@ -154,41 +154,10 @@ class _HomePageState extends State<HomePage> {
                                   child: SingleChildScrollView(
                                     child: Column(
                                       children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Text("Daire: ", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400,),),
-                                            SelectableText(ictihats![index].daire, style: TextStyle(color: Colors.white),),
-                                          ],
-                                        ),
-                                        Divider(color: Colors.yellow.shade400,),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Text("Mahkeme: ", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400,),),
-                                            SelectableText(ictihats![index].mahkeme, style: TextStyle(color: Colors.white),),
-                                          ],
-                                        ),
-                                        Divider(color: Colors.yellow.shade400,),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Text("Esas: ", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400,),),
-                                            SelectableText(ictihats![index].esas, style: TextStyle(color: Colors.white),),
-                                          ],
-                                        ),
-                                        Divider(color: Colors.yellow.shade400,),
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Text("Hüküm: ", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400,),),
-                                            SelectableText(ictihats![index].hukum, style: TextStyle(color: Colors.white),),
-                                          ],
-                                        ),
-                                        Divider(color: Colors.yellow.shade400,),
                                         Wrap(
                                           children: [
                                             Text("İçtihat:", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400, height: 1.5 ),),
+                                            Divider(color: Colors.yellow.shade400,),
                                             SelectableText(ictihats![index].ictihat, style: TextStyle(color: Colors.white, height: 1.4),),
                                           ],
                                         ),
