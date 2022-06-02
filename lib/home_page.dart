@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:q_a_in_law_area/ictihatScreen.dart';
 import 'package:q_a_in_law_area/remote_service/remote_service.dart';
 import 'package:q_a_in_law_area/widgets/Ictihat.dart';
 import 'package:url_launcher/link.dart';
@@ -47,7 +48,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -140,32 +141,8 @@ class _HomePageState extends State<HomePage> {
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all<Color>(Colors.yellow.shade400)
                               ),
-                              onPressed: () async{
-                                await showDialog(context: context, builder: (_) => Container(
-                                  padding: EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Color(0xff4B4B4B),
-                                  ),
-                                  width: size.width,
-                                  margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-                                  alignment: Alignment.topLeft,
-
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        Wrap(
-                                          children: [
-                                            Text("İçtihat:", style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic, color: Colors.yellow.shade400, height: 1.5 ),),
-                                            Divider(color: Colors.yellow.shade400,),
-                                            SelectableText(ictihats![index].ictihat, style: TextStyle(color: Colors.white, height: 1.4),),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ) );
-
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => IctihatScreen(ictihat: ictihats![index].ictihat)),);
                               },
                               child: Text("İÇTİHAT İÇİN TIKLA", style: TextStyle(color: Colors.black),),
 
